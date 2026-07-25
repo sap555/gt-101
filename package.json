@@ -1,0 +1,16 @@
+{
+  "name": "custom-dashboard-app",
+  "version": "1.0.0",
+  "description": "Node.js website with authentication, centered clock/date dashboard, logout, and custom PNG background upload.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "express": "^4.19.2",
+    "express-session": "^1.18.0",
+    "multer": "^1.4.5-lts.1"
+  }
+}

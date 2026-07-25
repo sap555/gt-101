@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Personal Time Hub</title>
+    <meta name="description" content="Personalized dashboard displaying centered live time and date with top-right logout and full custom PNG background customization.">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <!-- Dynamic Custom Background Layer -->
+    <div id="bg-container" class="bg-container"></div>
+    <div id="bg-overlay" class="bg-overlay"></div>
+
+    <div class="dashboard-layout">
+        <!-- Top Navigation Header -->
+        <header class="dash-header">
+            <!-- User Badge (Top Left) -->
+            <div class="user-badge">
+                <div id="user-avatar" class="user-avatar">A</div>
+                <span id="username-display" class="username-display">admin</span>
+            </div>
+
+            <!-- Header Actions (Top Right) -->
+            <div class="header-actions">
+                <!-- Customize Background Button -->
+                <button type="button" id="open-customizer-btn" class="btn-glass">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="3"></circle>
+                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                    </svg>
+                    <span>Background</span>
+                </button>
+
+                <!-- Logout Button (Top Right as requested) -->
+                <button type="button" id="logout-btn" class="btn-glass btn-logout">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                        <polyline points="16 17 21 12 16 7"></polyline>
+                        <line x1="21" y1="12" x2="9" y2="12"></line>
+                    </svg>
+                    <span>Logout</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- CENTER HERO SECTION (Time centered, Date directly below) -->
+        <main class="hero-center">
+            <div class="clock-card">
+                <!-- CENTER TIME DISPLAY -->
+                <div class="clock-display" id="clock-display">
+                    00:00:00 <span class="clock-ampm" id="clock-ampm">AM</span>
+                </div>
+
+                <!-- DATE DISPLAY BELOW TIME -->
+                <div class="date-display" id="date-display">
+                    <svg class="date-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                    </svg>
+                    <span id="date-text">Loading date...</span>
+                </div>
+
+                <div id="greeting-text" class="greeting-text">Welcome back!</div>
+
+                <!-- 12h / 24h Toggle -->
+                <div class="time-format-toggle">
+                    <span>Format:</span>
+                    <button type="button" id="fmt-12" class="fmt-btn active">12H</button>
+                    <button type="button" id="fmt-24" class="fmt-btn">24H</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- BACKGROUND CUSTOMIZER MODAL -->
+    <div id="customizer-modal" class="modal-overlay">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h2>Customize Background</h2>
+                <button type="button" id="close-modal-btn" class="btn-close">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- PNG File Upload Dropzone -->
+            <div class="section-title">Upload Custom Image (PNG / JPG)</div>
+            <div id="upload-dropzone" class="dropzone">
+                <svg class="dropzone-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="17 8 12 3 7 8"></polyline>
+                    <line x1="12" y1="3" x2="12" y2="15"></line>
+                </svg>
+                <p>Drag & Drop your PNG file here or click to browse</p>
+                <span>Supports PNG, JPG, WEBP, GIF (Max 15MB)</span>
+                <input type="file" id="bg-file-input" accept="image/*" style="display: none;">
+            </div>
+
+            <!-- Built-in Preset Gradients/Wallpapers -->
+            <div class="section-title">Or Choose Preset Wallpaper</div>
+            <div class="presets-grid">
+                <div class="preset-card active" data-bg="radial-gradient(circle at 50% 30%, #1e1b4b 0%, #0f172a 70%)" style="background: radial-gradient(circle at 50% 30%, #1e1b4b 0%, #0f172a 70%);"></div>
+                <div class="preset-card" data-bg="linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%)" style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);"></div>
+                <div class="preset-card" data-bg="linear-gradient(135deg, #31103f 0%, #0f172a 100%)" style="background: linear-gradient(135deg, #31103f 0%, #0f172a 100%);"></div>
+                <div class="preset-card" data-bg="linear-gradient(135deg, #064e3b 0%, #022c22 100%)" style="background: linear-gradient(135deg, #064e3b 0%, #022c22 100%);"></div>
+            </div>
+
+            <!-- Readability Adjustment Sliders -->
+            <div class="section-title">Contrast & Readability</div>
+            
+            <div class="control-group">
+                <div class="control-label">
+                    <span>Dark Tint Overlay</span>
+                    <span id="opacity-val">40%</span>
+                </div>
+                <input type="range" id="opacity-slider" class="slider-input" min="0" max="90" value="40">
+            </div>
+
+            <div class="control-group">
+                <div class="control-label">
+                    <span>Background Blur</span>
+                    <span id="blur-val">0px</span>
+                </div>
+                <input type="range" id="blur-slider" class="slider-input" min="0" max="20" value="0">
+            </div>
+
+            <!-- Footer Actions -->
+            <div class="modal-footer">
+                <button type="button" id="reset-bg-btn" class="btn-secondary">Reset Default</button>
+                <button type="button" id="done-bg-btn" class="btn-primary">Done</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/dashboard.js"></script>
+</body>
+</html>

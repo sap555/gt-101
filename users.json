@@ -1,0 +1,16 @@
+{
+  "admin": {
+    "username": "admin",
+    "passwordHash": "$2a$10$fOmd4vlxVRnXHFTziQoJEeMbSyiXapIB0t4J6B1W43I0CieMXyru.",
+    "customBackground": "/uploads/bg-1784967034366-283806721.gif",
+    "overlayOpacity": 0,
+    "overlayBlur": 0
+  },
+  "asd": {
+    "username": "asd",
+    "passwordHash": "$2a$10$ww6HRt5syLJl5yr4luk4kOjOHd0mdeS/KyHo/eL6gzrieqaLmCVVC",
+    "customBackground": null,
+    "overlayOpacity": 0.4,
+    "overlayBlur": 0
+  }
+}
